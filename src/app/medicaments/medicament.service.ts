@@ -39,6 +39,22 @@ export class MedicamentService {
     )
   ];
 
+  paiement(){
+    console.log(this._medsInCart);
+    console.log(this._meds);
+
+    for(let i=0; i<this._meds.length; i++){
+      for(let j=0; j<this._medsInCart.length; j++){
+        if(this._meds[i].num === this._medsInCart[j].num){
+          console.log(this._meds[i].qte +" "+ this._medsInCart[j].qte)
+          this._meds[i].qte -= this._medsInCart[j].qte;
+          break;
+        }
+      }
+    }
+    console.log(this._meds);
+  }
+
   get medsInCart() {
     return this._medsInCart;
   }
@@ -52,8 +68,16 @@ export class MedicamentService {
   }
 
   addMedToCart(num: string){
+    let med = this._meds.find(med => med.num === num)!
+
     this._medsInCart.push(
-      this._meds.find(med => med.num === num)!
+       new Medicament(
+        med.num,
+        med.nom,
+        med.qte,
+        med.prix,
+        med.imageUrl
+       )
     )
   }
 
