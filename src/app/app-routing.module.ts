@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'panier',
     loadChildren: () => import('./panier/panier.module').then( m => m.PanierPageModule)
   },
+  {
+    path: 'paiement',
+    loadChildren: () => import('./paiement/paiement.module').then( m => m.PaiementPageModule)
+  },
 ];
 
 @NgModule({

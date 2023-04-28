@@ -22,9 +22,7 @@
                 <p>  prix : {{ med.prix | currency}} </p>
                 <ion-input label="quantité : " [(ngModel)]="med.qte"></ion-input>
               </ion-label>
-
             </ion-item>
-
             <ion-item-options>
               <ion-item-option color="danger" (click)="deleteMedFromCart(med.num)">
                 <ion-icon name="trash" slot="icon-only"></ion-icon>
@@ -35,5 +33,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-button *ngIf="medInCart.length > 0" expand="block" >Valider</ion-button>
 </ion-content>
 
