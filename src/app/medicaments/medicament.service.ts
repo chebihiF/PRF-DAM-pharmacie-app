@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Medicament } from './medicament.model';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,18 @@ export class MedicamentService {
       this.http
       .post(this.backEndUrl+'medicaments.json',{...this._meds[i], id:null})
       .subscribe((data)=>console.log(data))
-      }
-    */
+    }
+  }*/
+
   private _medsInCart: Medicament[] = []
 
   private _meds: Medicament[] = [];
+
+  fetchMeds()
+  {
+    return this.http.get<{[key: string]: Medicament}>(this.backEndUrl+"medicaments.json")
+  }
+
 
   paiement(){
     console.log(this._medsInCart);

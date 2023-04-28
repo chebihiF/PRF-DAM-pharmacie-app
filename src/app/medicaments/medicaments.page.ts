@@ -10,12 +10,16 @@ import { Router } from '@angular/router';
 })
 export class MedicamentsPage implements OnInit {
 
-  meds?: Medicament[];
+  meds: Medicament[] = [];
 
   constructor(private medsService: MedicamentService, private router: Router) { }
 
   ngOnInit() {
-    this.meds = this.medsService.medInStock()
+    this.medsService.fetchMeds().subscribe((data)=>{
+      for(const key in data){
+        this.meds.push(data[key])
+      }
+    })
   }
 
   addToCart(num: string){

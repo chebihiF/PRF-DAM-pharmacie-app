@@ -10,9 +10,7 @@ export class AccueilPage implements OnInit {
 
   constructor(private medService: MedicamentService) { }
 
-  addMed(){
-    this.medService.addMed();
-  }
+
 
   ngOnInit() {
 
