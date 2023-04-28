@@ -1,43 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Medicament } from './medicament.model';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedicamentService {
 
+  backEndUrl = "https://pharmacie-back-default-rtdb.firebaseio.com/";
+
+  constructor(private http: HttpClient) { }
+
+  /*addMed(){
+    for(let i=0;i<this._meds.length;i++){
+      this.http
+      .post(this.backEndUrl+'medicaments.json',{...this._meds[i], id:null})
+      .subscribe((data)=>console.log(data))
+      }
+    */
   private _medsInCart: Medicament[] = []
 
-  private _meds: Medicament[] = [
-    new Medicament(
-      'n1',
-      'DOLIPRANE',
-      2,
-      2.5,
-      'https://pharmacie-saintemarie-gabon.com/wp-content/uploads/sites/24/2022/11/image_produit-268045_411605478.png'
-    ),
-    new Medicament(
-      'n2',
-      'DAFALGAN',
-      10,
-      3.5,
-      'https://www.pharma-gdd.com/media/cache/resolve/product_show/upsa-dafalgan-tabs-1000-mg-douleurs-et-fievre-8-comprimes-face.jpg'
-    ),
-    new Medicament(
-      'n3',
-      'LEVOTHYROX',
-      10,
-      25,
-      'https://www.liberation.fr/resizer/z4JBPxRteff_nlv5sVJnk1I_jkE=/arc-photo-liberation/eu-central-1-prod/public/QVGQJQ2K4BGHDHYBGXJKAYH5SE.jpg'
-    ),
-    new Medicament(
-      'n4',
-      'TAHOR',
-      100,
-      2,
-      'https://pharmnet-dz.com/ImageHandler.ashx?imageurl=/img/medics/1564.png'
-    )
-  ];
+  private _meds: Medicament[] = [];
 
   paiement(){
     console.log(this._medsInCart);
@@ -82,10 +66,10 @@ export class MedicamentService {
   }
 
   deleteMedFromCart(num : string){
-    this._medsInCart = this._medsInCart.filter(med => med.num !== num)
+    this._medsInCart = this._medsInCart.filter(med => med.num !== num) // 20s
     return this._medsInCart;
   }
 
 
-  constructor() { }
+
 }
